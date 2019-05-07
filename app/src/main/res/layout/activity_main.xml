@@ -6,13 +6,51 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <cn.allen.progressbarview.CircleProgressBar
+        android:id="@+id/circleProgressBar"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:paddingStart="3dp"
+        android:paddingTop="7dp"
+        android:paddingEnd="4dp"
+        android:paddingBottom="8dp"
+        app:currentProgress="30"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:maxProgress="100"
+        app:ringBackgroundColor="@android:color/darker_gray"
+        app:ringColor="@color/colorAccent"
+        app:ringWidth="5dp" />
 
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:min="0"
+        android:progress="30"
+        app:layout_constraintTop_toBottomOf="@+id/circleProgressBar"
+        tools:layout_editor_absoluteX="10dp" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/etProgress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        android:text="30"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/btnProgress"
+        app:layout_constraintEnd_toStartOf="@+id/btnProgress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnProgress" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btnProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="设置进度"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 </android.support.constraint.ConstraintLayout>
