@@ -10,7 +10,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 /**
  * Circle style progressbar
@@ -45,6 +45,11 @@ public class CircleProgressBar extends View {
     private float mRingWidth;
 
     /**
+     * default width of the ring
+     */
+    private static final float sDefaultRingWidth = 80F;
+
+    /**
      * measured width
      */
     private int mMeasuredWidth;
@@ -72,6 +77,11 @@ public class CircleProgressBar extends View {
     private float mStartAngle;
 
     private float mSweepAngle;
+
+    /**
+     * default duration of progress setting animation
+     */
+    private static final long sAnimationDuration = 500L;
 
     public CircleProgressBar(Context context) {
         this(context, null);
@@ -110,8 +120,8 @@ public class CircleProgressBar extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int desiredWidth = getSuggestedMinimumWidth() + getPaddingStart() + getPaddingEnd();
-        int desiredHeight = getSuggestedMinimumHeight() + getPaddingTop() + getPaddingBottom();
+        int desiredWidth = (int) sDefaultRingWidth + getPaddingStart() + getPaddingEnd();
+        int desiredHeight = (int) sDefaultRingWidth + getPaddingTop() + getPaddingBottom();
         mMeasuredWidth = measureDimension(desiredWidth, widthMeasureSpec);
         mMeasuredHeight = measureDimension(desiredHeight, heightMeasureSpec);
         mActualSize = Math.min(mMeasuredWidth - getPaddingStart() - getPaddingEnd(), mMeasuredHeight - getPaddingTop() - getPaddingBottom());
@@ -173,10 +183,13 @@ public class CircleProgressBar extends View {
         }
     }
 
-    public void setCurrentProgressWithAnimation(float currentProgress) {
+    public void setCurrentProgress(float currentProgress, @Nullable long duration) {
         Animator animator = ObjectAnimator.ofFloat(this, "currentProgress", currentProgress);
-        animator.setDuration(1000L);
-        animator.setInterpolator(new DecelerateInterpolator());
+        if (duration <= 0L) {
+            duration = sAnimationDuration;
+        }
+        animator.setDuration(duration);
+        animator.setInterpolator(new AccelerateDecelerateInterpolator());
         animator.start();
     }
 }

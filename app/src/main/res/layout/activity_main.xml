@@ -8,8 +8,8 @@
 
     <cn.allen.progressbarview.CircleProgressBar
         android:id="@+id/circleProgressBar"
-        android:layout_width="70dp"
-        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:paddingStart="3dp"
         android:paddingTop="7dp"
         android:paddingEnd="4dp"
@@ -22,7 +22,7 @@
         app:maxProgress="100"
         app:ringBackgroundColor="@android:color/darker_gray"
         app:ringColor="@color/colorAccent"
-        app:ringWidth="5dp" />
+        app:ringWidth="1dp" />
 
     <SeekBar
         android:id="@+id/seekBar"

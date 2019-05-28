@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mBtnProgress.setOnClickListener(v -> {
-            mCircleProgressBar.setCurrentProgressWithAnimation(Integer.parseInt(mEtProgress.getText().toString()));
+            mCircleProgressBar.setCurrentProgress(Float.parseFloat(mEtProgress.getText().toString()), 500L);
         });
     }
 }

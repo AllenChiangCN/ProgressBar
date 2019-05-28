@@ -1,17 +1,22 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion rootProject.compile_sdk_version
 
-    buildToolsVersion = '28.0.3'
+    buildToolsVersion rootProject.build_tools_version
 
     defaultConfig {
         applicationId "cn.allen.progressbar"
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "0.0.1"
+        minSdkVersion rootProject.min_sdk_version
+        targetSdkVersion rootProject.target_sdk_version
+        versionCode rootProject.version_code
+        versionName rootProject.version_name
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility = rootProject.jdk_version
+        targetCompatibility = rootProject.jdk_version
     }
 
     buildTypes {
@@ -19,11 +24,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-    }
-
-    compileOptions {
-        sourceCompatibility = '1.8'
-        targetCompatibility = '1.8'
     }
 }
 
@@ -35,6 +35,6 @@ dependencies {
     implementation project(path: ':progressbarview')
 
     testImplementation "junit:junit:$junit_version"
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation "com.android.support.test:runner:$test_runner_version"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$test_espresso_core_version"
 }

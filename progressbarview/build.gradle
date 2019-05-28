@@ -1,17 +1,25 @@
 apply plugin: 'com.android.library'
 
-android {
-    compileSdkVersion 28
+apply plugin: 'com.github.dcendents.android-maven'
 
+group='com.github.allenchiangcn'
+
+android {
+    compileSdkVersion rootProject.compile_sdk_version
+
+    buildToolsVersion rootProject.build_tools_version
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-
+        minSdkVersion rootProject.min_sdk_version
+        targetSdkVersion rootProject.target_sdk_version
+        versionCode rootProject.version_code
+        versionName rootProject.version_name
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
 
+    compileOptions {
+        sourceCompatibility = rootProject.jdk_version
+        targetCompatibility = rootProject.jdk_version
     }
 
     buildTypes {
@@ -20,7 +28,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
@@ -28,6 +35,6 @@ dependencies {
 
     implementation "com.android.support:appcompat-v7:$support_version"
     testImplementation "junit:junit:$junit_version"
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation "com.android.support.test:runner:$test_runner_version"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$test_espresso_core_version"
 }
