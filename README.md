@@ -15,7 +15,7 @@ allprojects {
 
 2. 在app的build.gradle中添加
 ```gradle
-implementation 'com.github.allenchiangcn:progressbarview:1.0.0-beta'
+implementation 'com.github.AllenChiangCN:ProgressBar:1.0.0-beta'
 ```
 
 ## 使用说明
